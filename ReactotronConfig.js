@@ -1,8 +1,13 @@
-import Reactotron from "reactotron-react-native";
+import Reactotron, {
+  networking,
+  trackGlobalErrors
+} from "reactotron-react-native";
 import { reactotronRedux } from "reactotron-redux";
 
 const reactotron = Reactotron.configure() // controls connection & communication settings
   .use(reactotronRedux())
+  .use(networking())
+  .use(trackGlobalErrors())
   .connect(); // let's connect!
 
 export default reactotron;

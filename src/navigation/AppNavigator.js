@@ -1,5 +1,6 @@
 //@flow
 import Home from "../home/HomeComponent";
+import Questions from "./../questions/QuestionsComponent";
 import { createStackNavigator } from "react-navigation";
 import { Easing, Animated } from "react-native";
 import { navigationActionTypes } from "./NavigationAction";
@@ -56,7 +57,8 @@ const transitionConfig = () => {
 
 const AppNavigator = createStackNavigator(
   {
-    Home: { screen: Home }
+    Home: Home,
+    Questions: Questions
   },
   {
     headerMode: "none",

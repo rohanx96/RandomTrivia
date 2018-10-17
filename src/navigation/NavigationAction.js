@@ -41,7 +41,11 @@ export function gotoHome() {
   navigator.dispatch(NavigationActions.navigate({ routeName: "Home" }));
 }
 
-export function goToScreen(flowType, uniqueID) {
+export function goToScreen(routeName) {
+  navigator.dispatch(NavigationActions.navigate({ routeName }));
+}
+
+export function goToRoute(flowType, uniqueID) {
   navigator.dispatch(
     StackActions.push({
       routeName: "Screen",

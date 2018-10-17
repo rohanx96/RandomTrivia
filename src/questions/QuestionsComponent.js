@@ -3,15 +3,12 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  StatusBar,
   ImageBackground,
   TouchableOpacity
 } from "react-native";
 import { splash } from "./../../assets/images/index";
-import { connect } from "react-redux";
-import { fetchQuestions } from "./../questions/QuestionsAction";
 
-class HomeComponent extends Component<{}, {}> {
+export default class QuestionsComponent extends Component<{}, {}> {
   constructor(props) {
     super(props);
   }
@@ -42,14 +39,10 @@ class HomeComponent extends Component<{}, {}> {
               fontWeight: "bold"
             }}
           >
-            {this.props.playAgain
-              ? "YOUR SCORE:\n" + this.props.score
-              : "RANDOM\nTRIVIA"}
+            {"RANDOM\nTRIVIA"}
           </Text>
-          <Text style={{ color: "#fff", fontSize: 22 }}>
-            {this.props.playAgain
-              ? "You completed the quiz in " + this.props.time
-              : "10 Random Questions Every Time."}
+          <Text style={{ color: "#fff" }}>
+            {"10 Random Questions Every Time."}
           </Text>
           <TouchableOpacity
             activeOpacity={0.9}
@@ -60,10 +53,9 @@ class HomeComponent extends Component<{}, {}> {
               justifyContent: "center",
               flexDirection: "row"
             }}
-            onPress={this.props.fetchQuestions}
           >
             <Text style={{ textAlign: "center", color: "#fff", flex: 1 }}>
-              {this.props.playAgain ? "PLAY AGAIN" : "START"}
+              {"START"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -72,17 +64,4 @@ class HomeComponent extends Component<{}, {}> {
   }
 }
 
-const mapStateToProps = state => ({
-  playAgain: state.questions.playAgain,
-  score: state.questions.score,
-  time: state.questions.time
-});
 
-const mapDispatchToProps = dispatch => ({
-  fetchQuestions: () => dispatch(fetchQuestions())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeComponent);

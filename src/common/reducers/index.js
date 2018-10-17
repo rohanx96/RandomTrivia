@@ -2,6 +2,7 @@
 import { appReducer } from "./../../app/AppReducer";
 import { combineReducers } from "redux";
 import { PersistReducer } from "./PersistReducer";
+import { QuestionsReducer } from "./../../questions/QuestionsReducer";
 import { persistReducer, createTransform } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const AppReducer = combineReducers({
   app: appReducer,
+  questions: QuestionsReducer,
   persist: PersistReducer
 });
 

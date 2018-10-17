@@ -22,7 +22,6 @@ export default class AppComponent extends Component<{}, {}> {
     if (this.props.isRehydrated) {
       return (
         <SafeAreaView style={{ flex: 1 }}>
-          <StatusBar backgroundColor="#355C95" />
           <NavigationComponent />
           <View>
             <Modal

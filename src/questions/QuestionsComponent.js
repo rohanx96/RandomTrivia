@@ -41,7 +41,7 @@ export default class QuestionsComponent extends Component<{}, {}> {
             alignItems: "center",
             backgroundColor: "#fff",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "flex-start"
           }}
         >
           <TouchableWithoutFeedback
@@ -70,13 +70,13 @@ export default class QuestionsComponent extends Component<{}, {}> {
             style={{
               color: "#000",
               fontSize: 16,
+              flex: 1,
               textAlign: "center",
               fontWeight: "bold"
             }}
           >
             {"RANDOM TRIVIA"}
           </Text>
-          <View />
         </View>
         <Swiper
           ref={swiper => {

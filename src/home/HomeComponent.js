@@ -88,7 +88,7 @@ class HomeComponent extends Component<{}, {}> {
                 fontWeight: "bold"
               }}
             >
-              {this.props.playAgain ? "PLAY AGAIN" : "START"}
+              {this.props.playAgain ? "PLAY AGAIN" : "START QUIZ"}
             </Text>
           </TouchableOpacity>
         </View>

@@ -31,7 +31,7 @@ export const fetchQuestions = () => {
     dispatch(
       openBottomSheet(
         () => {
-          return loaderDialog("Getting questions ready for you.");
+          return loaderDialog("Preparing questions for you.");
         },
         false,
         false

@@ -40,7 +40,25 @@ export const fetchQuestions = () => {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple")
       .then(response => response.json())
       .then(responseJson => {
-        dispatch(setQuestions(responseJson.results));
+        let questions = [];
+        responseJson.results.forEach(element => {
+          let questionData = {};
+          questionData.question = element.question;
+          let correctAnswerIndex = Math.floor(Math.random() * 4);
+          questionData.answers = [];
+          element.incorrect_answers.forEach(answer => {
+            questionData.answers.push({
+              text: answer,
+              isCorrect: false
+            });
+          });
+          questionData.answers.splice(correctAnswerIndex, 0, {
+            text: element.correct_answer,
+            isCorrect: true
+          });
+          questions.push(questionData);
+        });
+        dispatch(setQuestions(questions));
         dispatch(closeBottomSheet());
         goToScreen("Questions");
       })

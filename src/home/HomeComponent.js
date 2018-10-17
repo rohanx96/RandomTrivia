@@ -36,24 +36,32 @@ class HomeComponent extends Component<{}, {}> {
         >
           <View
             style={{
-              backgroundColor: "#3853A4",
+              backgroundColor: "#fff",
               padding: 24,
-              width: "100%"
+              width: "100%",
+              elevation: 24
             }}
           >
             <Text
               style={{
-                color: "#fff",
+                color: "#3853A4",
                 fontSize: 32,
                 textAlign: "center",
                 fontWeight: "bold"
               }}
             >
               {this.props.playAgain
-                ? "YOUR SCORE:\n" + this.props.score
+                ? "YOUR SCORE\n" + this.props.score
                 : "RANDOM\nTRIVIA"}
             </Text>
-            <Text style={{ color: "#fff", fontSize: 18, textAlign : "center" }}>
+            <Text
+              style={{
+                color: "#000",
+                fontSize: 16,
+                textAlign: "center",
+                marginTop: 4
+              }}
+            >
               {this.props.playAgain
                 ? "You completed the quiz in " + this.props.time
                 : "10 Random Questions Every Time."}
@@ -67,11 +75,19 @@ class HomeComponent extends Component<{}, {}> {
               borderRadius: 24,
               justifyContent: "center",
               flexDirection: "row",
-              margin: 24
+              margin: 24,
+              elevation: 32
             }}
             onPress={this.props.fetchQuestions}
           >
-            <Text style={{ textAlign: "center", color: "#3853A4", flex: 1 }}>
+            <Text
+              style={{
+                textAlign: "center",
+                color: "#3853A4",
+                flex: 1,
+                fontWeight: "bold"
+              }}
+            >
               {this.props.playAgain ? "PLAY AGAIN" : "START"}
             </Text>
           </TouchableOpacity>

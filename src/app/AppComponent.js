@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Modal, View, Text, SafeAreaView, StatusBar } from "react-native";
 import NavigationComponent from "./../navigation/NavigationComponent";
-import { splash } from "./../../assets/images/index";
+import FlashMessage from "react-native-flash-message";
 
 const defaultState = {
   isInitialised: false
@@ -47,6 +47,7 @@ export default class AppComponent extends Component<{}, {}> {
               </View>
             </Modal>
           </View>
+          <FlashMessage position="bottom" icon="auto" />
         </SafeAreaView>
       );
     } else {

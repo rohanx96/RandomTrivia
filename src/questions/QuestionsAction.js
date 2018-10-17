@@ -44,6 +44,7 @@ export const fetchQuestions = () => {
         responseJson.results.forEach(element => {
           let questionData = {};
           questionData.question = element.question;
+          questionData.category = element.category;
           let correctAnswerIndex = Math.floor(Math.random() * 4);
           questionData.answers = [];
           element.incorrect_answers.forEach(answer => {

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { splash, cross } from "./../../assets/images/index";
 import { actionDialog } from "./../common/BottomDialogs";
+import { showMessage } from "react-native-flash-message";
 import Swiper from "react-native-swiper-animated";
 import { goBackTo, resetTo } from "./../navigation/NavigationAction";
 import HTML from "react-native-render-html";
@@ -18,12 +19,14 @@ import Reactotron from "reactotron-react-native";
 export default class QuestionsComponent extends Component<{}, {}> {
   constructor(props) {
     super(props);
-    this.score = 0;
   }
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.score = 0;
+    this.startTime = new Date().getTime();
+  }
 
   render() {
     return (
@@ -82,9 +85,10 @@ export default class QuestionsComponent extends Component<{}, {}> {
           style={{
             margin: 24,
             backgroundColor: "#fff",
-            borderRadius: 16
+            borderRadius: 16,
+            flex: 1,
+            elevation : 32
           }}
-          stack={true}
           swiper={false}
           backPressToBack={false}
         >
@@ -93,15 +97,15 @@ export default class QuestionsComponent extends Component<{}, {}> {
               style={{
                 padding: 16,
                 flexDirection: "column",
-                backgroundColor: "#fff",
-                flex: 1
+                backgroundColor: "#fff"
               }}
             >
               <Text>{"Question " + (index + 1)}</Text>
+              <Text>{questionData.category}</Text>
               <HTML
                 html={questionData.question}
                 containerStyle={{ marginTop: 12, marginBottom: 24 }}
-                baseFontStyle={{ fontSize: 15 }}
+                baseFontStyle={{ fontSize: 18 }}
               />
               {questionData.answers.map(answer => (
                 <AnswerButton
@@ -109,12 +113,33 @@ export default class QuestionsComponent extends Component<{}, {}> {
                   onPress={() => {
                     if (answer.isCorrect) {
                       this.score++;
+                      showMessage({
+                        message: "Awesome! That is correct",
+                        type: "success",
+                        duration: 800
+                      });
+                    } else {
+                      showMessage({
+                        message: "Oops! You got it wrong",
+                        type: "danger",
+                        duration: 800
+                      });
                     }
                     if (index == this.props.questions.length - 1) {
-                      this.props.finishQuiz(this.score, 0);
+                      this.endTime = new Date().getTime();
+                      let time = (this.endTime - this.startTime) / 1000;
+                      let mins = Math.floor(time / 60);
+                      let seconds = Math.floor(time % 60);
+                      Reactotron.log(time, mins, seconds);
+                      if (mins < 1) {
+                        time = seconds + " sec";
+                      } else {
+                        time = mins + " mins : " + seconds + "sec";
+                      }
+                      this.props.finishQuiz(this.score * 10, time);
                       goBackTo("Home");
                     } else {
-                      this.swiper.forceLeftSwipe();
+                      this.swiper.forceRightSwipe();
                     }
                   }}
                 />

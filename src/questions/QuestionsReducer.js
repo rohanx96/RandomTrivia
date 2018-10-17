@@ -4,7 +4,7 @@ import createReducer from "./../common/CreateReducer";
 
 const initState = { playAgain: false, score: 0, time: 0, questions: [] };
 export const QuestionsReducer = createReducer(initState, {
-  [ACTION_TYPES.SET_QUESTIONS](state, action) {
+  [ACTION_TYPES.FINISH_QUIZ](state, action) {
     return Object.assign({}, state, {
       playAgain: true,
       score: action.payload.score,

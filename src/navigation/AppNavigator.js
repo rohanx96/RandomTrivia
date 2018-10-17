@@ -1,6 +1,6 @@
 //@flow
 import Home from "../home/HomeComponent";
-import Questions from "./../questions/QuestionsComponent";
+import Questions from "./../questions/QuestionsContainer";
 import { createStackNavigator } from "react-navigation";
 import { Easing, Animated } from "react-native";
 import { navigationActionTypes } from "./NavigationAction";

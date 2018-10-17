@@ -5,7 +5,8 @@ import {
   ActivityIndicator,
   Text,
   TouchableHighlight,
-  View
+  View,
+  TouchableOpacity
 } from "react-native";
 
 export function loaderDialog(header, onCancel) {
@@ -33,25 +34,46 @@ export function loaderDialog(header, onCancel) {
   );
 }
 
-export function actionDialog(header, description, onDone) {
+export function actionDialog(header, description, onDone, onCancel) {
   return (
     <View style={{ backgroundColor: "#fff", padding: 24 }}>
       <Text style={{ fontSize: 24 }}>{header}</Text>
       <Text style={{ fontSize: 16 }}>{description}</Text>
-      {onDone && (
-        <TouchableHighlight
-          style={{
-            backgroundColor: "#f50057",
-            marginVertical: 12,
-            padding: 12
-          }}
-          onPress={() => {
-            onDone();
-          }}
-        >
-          <Text style={{ textAlign: "center", color: "#fff" }}>Okay</Text>
-        </TouchableHighlight>
-      )}
+      <View style={{ flexDirection: "row" }}>
+        {onDone && (
+          <TouchableHighlight
+            underlayColor={"#355C9555"}
+            style={{
+              backgroundColor: "#fff",
+              marginVertical: 12,
+              borderRadius: 24,
+              padding: 12,
+              flex: 1
+            }}
+            onPress={onDone}
+          >
+            <Text style={{ textAlign: "center", color: "#3853A4" }}>Yes</Text>
+          </TouchableHighlight>
+        )}
+        {onCancel && (
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={{
+              backgroundColor: "#3853A4",
+              padding: 12,
+              borderRadius: 24,
+              flexDirection: "row",
+              marginVertical: 12,
+              flex: 1
+            }}
+            onPress={onCancel}
+          >
+            <Text style={{ textAlign: "center", color: "#fff", flex: 1 }}>
+              {"No"}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 }

@@ -38,9 +38,9 @@ export default class AppComponent extends Component<{}, {}> {
               <View
                 style={{
                   flex: 1,
-                  paddingHorizontal: 22,
+                  paddingHorizontal: 16,
                   justifyContent: "flex-end",
-                  backgroundColor: "#33333333"
+                  backgroundColor: "#33333366"
                 }}
               >
                 {this.props.renderBottomsheet()}
